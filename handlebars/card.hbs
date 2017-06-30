@@ -1,0 +1,44 @@
+<span class="fa fa-pencil open-quick-edit"></span>
+<div class="list-card-details">
+  <div class="list-card-labels">
+    {{#each labels}}
+      <span class="card-label" style="background:{{this.color}}"></span>&nbsp;
+    {{/each}}
+  </div>
+  <div class="list-card-title">
+    {{title}}
+  </div>
+  <div class="badges">
+    {{#if subscribed}}
+      <div class="subscribed">
+        <span class="fa fa-eye"></span>
+      </div>
+    {{/if}}
+    {{#if due_date}}
+      <div class=
+      {{#if complete}}
+        "date green"
+      {{else}}
+        {{#checkDate due_date}}
+          "date pink"
+        {{else}}
+          "date yellow"
+        {{/checkDate}}
+      {{/if}}>
+        <span class="fa fa-clock-o"></span>&nbsp;
+        {{#dateString due_date}}{{/dateString}}
+      </div>
+    {{/if}}
+    {{#if description}}
+      <div class="desc">
+        <span class="fa fa-bars"></span>
+      </div>
+    {{/if}}
+    {{#if comments}}
+      <div class="comm">
+        <span class="fa fa-comment-o"></span>&nbsp;
+        {{comments.length}}
+      </div>
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<form method="post" action="/lists/{{list_id}}/cards/{{card.id}}/copy">
+  <a href="#">+</a>
+  <p class="copy-header">Copy Card</p>
+  <hr>
+  <h4>Title</h4>
+  <textarea name="title">{{card.title}}</textarea>
+  <h4>Keep...</h4>
+
+  <div>
+    <input type="checkbox" id="keepLabels" name="labels" value="keep" checked/>&nbsp;&nbsp;
+    <label for="keepLabels">Labels ({{card.labels.length}})</label>
+  </div>
+
+  <div>
+    <input type="checkbox" id="keepComments" name="comments" value="keep" checked/>&nbsp;&nbsp;
+    <label for="keepComments">Comments ({{card.comments.length}})</label>
+  </div>
+
+  <h4>Copy to...</h4>
+
+  <div class="selects">
+    <div class="select first">
+     <span class="select-label">List</span>
+     <select name="new_list">
+       {{#each lists}}
+         {{#isCurrentList ../list_id id}}
+           <option value="{{id}}" selected>{{title}}</option>
+         {{else}}
+           <option value="{{id}}">{{title}}</option>
+         {{/isCurrentList}}
+       {{/each}}
+     </select>
+
+
+    </div><div class="select second">
+      <span class="select-label">Position</span>
+      <select name="new_position">
+        {{#each card_positions}}
+          {{#isCurrentPosition ../card .}}
+            <option value="{{.}}" selected>{{.}}</option>
+          {{else}}
+            <option value="{{.}}">{{.}}</option>
+          {{/isCurrentPosition}}
+        {{/each}}
+      </select>
+    </div>
+
+  </div>
+  <input type="submit" value="Create card" />
+</form>

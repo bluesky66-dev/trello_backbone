@@ -1,0 +1,34 @@
+<form method="put" action="/lists/{{list_id}}/cards/{{card.id}}/position">
+ <a href="#">+</a>
+ <p class="move-header">Move Card</p>
+ <hr>
+ <div class="selects">
+   <div class="select first">
+    <span class="select-label">List</span>
+    <select name="new_list">
+      {{#each lists}}
+        {{#isCurrentList ../list_id id}}
+          <option value="{{id}}" selected>{{title}}</option>
+        {{else}}
+          <option value="{{id}}">{{title}}</option>
+        {{/isCurrentList}}
+      {{/each}}
+    </select>
+
+
+   </div><div class="select second">
+     <span class="select-label">Position</span>
+     <select name="new_position">
+       {{#each card_positions}}
+         {{#isCurrentPosition ../card .}}
+           <option value="{{.}}" selected>{{.}}</option>
+         {{else}}
+           <option value="{{.}}">{{.}}</option>
+         {{/isCurrentPosition}}
+       {{/each}}
+     </select>
+   </div>
+
+ </div>
+ <input type="submit" value="Move" />
+</form>

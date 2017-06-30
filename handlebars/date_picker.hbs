@@ -1,0 +1,24 @@
+<form method="put" action="/lists/{{list_id}}/cards/{{card.id}}">
+  <a href="#" class="close-date-picker">+</a>
+  <p class="date-header">Change Due Date</p>
+  <hr>
+  <div class="date-time">
+    <h3>Date</h3>
+    <input type="text" name="due_date"/>
+  </div>
+  <div class="date-time">
+    <h3>Time</h3>
+    <input type="text" name="due_time" value=
+      {{#if card.due_time}}
+        "{{card.due_time}}"
+      {{/if}}
+    >
+  </div>
+  <div class="calendar">
+  </div>
+  <div class="add-options">
+    <input type="submit" value="Save" />
+    <a class="remove-date" href="#">Remove</a>
+  </div>
+
+</form>

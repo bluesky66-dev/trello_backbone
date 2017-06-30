@@ -1,0 +1,189 @@
+<div class="overlay">
+
+</div>
+<div class="card_modal">
+  <span class="close close-modal">+</span>
+  <div class="main-content">
+
+    <div class="card-modal-header">
+      <span class="fa fa-square-o card-modal-icon"></span>
+      <input type="text" name="title" value="{{card.title}}" />
+      <p>
+      in list <a href="#">{{list_title}}</a>&nbsp;
+      {{#if card.subscribed}}
+        <span class="fa fa-eye"></span>
+      {{/if}}
+      </p>
+    </div>
+
+    <div class="labels-due-date">
+      <div class="labels">
+        {{#if card.labels.length}}
+          <p>
+          Labels
+          </p>
+          {{#each card.labels}}
+            <span style="background:{{color}}">{{title}}</span>
+          {{/each}}
+          <span class="add-new-label">+</span>
+        {{/if}}
+      </div>
+      <div class="due-date">
+        {{#if card.due_date}}
+          <p>
+          Due Date
+          </p>
+          <span class=
+            {{#if card.complete}}
+              "green"
+            {{else}}
+              {{#checkDate card.due_date}}
+                "pink"
+              {{else}}
+                "yellow"
+              {{/checkDate}}
+            {{/if}}>
+            <span class="fa fa-square-o complete">
+              <span class="fa fa-check" style=
+              {{#if card.complete}}
+                "display:inline-block"
+              {{/if}}
+              ></span>
+            </span>&nbsp;&nbsp;
+            <span class="complete-date">{{#dateString card.due_date}}{{/dateString}} at {{card.due_time}}</span>
+
+          </span>
+        {{/if}}
+      </div>
+    </div>
+
+    <div class="description-edit">
+
+      {{#if card.description}}
+        <p class="desc-title">
+          Description
+        </p>
+        <a class="desc-title" href="#">Edit</a>
+        <p class="desc-text">
+          {{card.description}}
+        </p>
+      {{else}}
+        <p class="edit-desc-link">
+          <span class="fa fa-bars"></span>&nbsp;&nbsp;<a href="#">Edit the description...</a>
+        </p>
+      {{/if}}
+
+      <form class="description-edit-form" method="put" action="/lists/{{list_id}}/cards/{{card.id}}">
+        <textarea name="description" placeholder="Add a more detailed description...">
+          {{#if card.description}}
+            {{card.description}}
+          {{/if}}
+        </textarea>
+        <div class="add-options">
+          <input type="submit" value="Save"/>
+          <span class="close">+</span>
+        </div>
+      </form>
+    </div>
+
+    <div class="add-comment">
+     <span class="fa fa-comment-o card-modal-icon"></span>
+     <span class="fa fa-user-o card-modal-icon"></span>
+      <h2>
+        Add comment
+      </h2>
+      <form method="post" action="/lists/{{list_id}}/cards/{{card.id}}/comments">
+        <textarea name="text" placeholder="Write a comment..."></textarea>
+        <div class="add-options">
+          <input class="disabled" type="submit" value="Save"/>
+        </div>
+      </form>
+    </div>
+
+    <div class="activity">
+      <span class="fa fa-list-ul card-modal-icon"></span>
+      <h2>
+        Activity
+      </h2>
+    </div>
+
+    {{#each card.comments}}
+      <div class="comment-details">
+        <span class="fa fa-user-o card-modal-icon"></span>
+        <h3>
+        User
+        </h3>
+        <p>
+        {{text}}
+        </p>
+        <div class="comment-actions">
+          <span>{{#dateString date}}{{/dateString}} at {{time}}</span>
+          <span>&nbsp;-&nbsp;</span>
+          <a class="edit-comment" href="#">Edit</a>
+          <span>&nbsp;-&nbsp;</span>
+          <a data-url="/lists/{{../list_id}}/cards/{{../card.id}}/comments/{{id}}" class="delete-comment" href="#">Delete</a>
+        </div>
+        <form method="put" action="/lists/{{../list_id}}/cards/{{../card.id}}/comments/{{id}}">
+          <textarea name="text">{{text}}</textarea>
+          <div class="add-options">
+            <input type="submit" value="Save" />
+            <span class="close">+</span>
+          </div>
+        </form>
+      </div>
+    {{/each}}
+
+
+  </div>
+
+
+  <div class="sidebar">
+    <h2>
+    Add
+    </h2>
+    <a href="#" class="action-labels">
+      <span class="fa fa-tag"></span>&nbsp;
+      <h3>
+      Labels
+      </h3>
+    </a>
+    <a href="#" class="action-duedate">
+      <span class="fa fa-clock-o"></span>&nbsp;
+      <h3>
+      Due Date
+      </h3>
+    </a>
+    <h2 class="actions">
+    Actions
+    </h2>
+    <a href="#" class="action-move">
+      <span class="fa fa-arrow-right"></span>&nbsp;
+      <h3>
+      Move
+      </h3>
+    </a>
+    <a href="#" class="action-copy">
+      <span class="fa fa-clone"></span>&nbsp;
+      <h3>
+      Copy
+      </h3>
+    </a>
+    <a href="#" class="action-subscribe" data-url="/lists/{{list_id}}/cards/{{card.id}}">
+      <span class="fa fa-eye"></span>&nbsp;
+      <h3>
+      Subscribe
+      </h3>
+      &nbsp;&nbsp;&nbsp;<span class=
+      {{#if card.subscribed}}
+        "fa fa-check-square"
+      {{/if}}></span>
+    </a>
+    <a href="#" class="action-delete" data-url="/lists/{{list_id}}/cards/{{card.id}}">
+      <span class="fa fa-trash"></span>&nbsp;
+      <h3>
+      Delete
+      </h3>
+    </a>
+  </div>
+
+</div>

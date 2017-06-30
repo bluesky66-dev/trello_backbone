@@ -1,0 +1,16 @@
+<div class="overlay-transparent"></div>
+<div class="results">
+  {{#if cards.length}}
+    <h1>Cards</h1>
+    <ul>
+      {{#each cards}}
+        <li>
+          <a data-list-id="{{lookup ../list_ids @index}}" data-id="{{id}}" href="#">{{title}}</a>
+          <p>in&nbsp;<span>{{lookup ../list_titles @index}}</span>&nbsp;on&nbsp;<span>{{../board_title}}</span>&nbsp;<span class="fa fa-lock"></span></p>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p class="no-match">We couldn't find any cards that matched your search.</p>
+  {{/if}}
+</div>

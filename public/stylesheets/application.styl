@@ -1,0 +1,883 @@
+@import 'whitespace-reset.css'
+@import 'mixins'
+body
+  font: normal 14px 'Helvetica Neue', Arial, Helvetica, sans-serif
+  color: colors.text
+  height: 100%;
+  background: colors.main
+main
+  background: colors.main
+  padding: 10px
+
+div, a, input, textarea
+  border-radius: 3px
+
+header
+  position: relative
+  height: 30px
+  padding: 5px
+  background: colors.secondary
+  .header-logo, .header-logo-icon
+    height: 30px
+    width: 80px
+    position: absolute
+  .header-logo
+    display: block
+    left: 50%
+    margin-left: -40px
+    text-align: center
+    top: 5px
+    bottom: 0px
+    opacity: 0.5
+    cursor: pointer
+    transition: opacity 2s
+  .header-logo-icon
+    background: transparent url(https://a.trellocdn.com/images/50b4ebc64391dc394a38e73aed57f0e2/header-logo.png) no-repeat top right
+    right: 0
+    top: 0
+    &:hover
+      opacity: 1
+  .user-label
+    rectangle_label()
+  .all-boards
+    float: left
+  .icon
+    font-size: 20px
+    color: #fff
+    position: relative
+    left: 5px
+    top: 5px
+    padding-right: 5px
+  .text
+    margin: 0
+    padding: 0 8px
+    font-weight: 700
+    vertical-align: middle
+  .search
+    search_bar()
+  .search input, .icon-search
+    background: rgba(255, 255, 255, 0.3)
+  .search input
+    border: none
+    display: inline-block
+    height: 30px
+    padding-left: 10px
+    &:focus
+      width: 180px
+      background: #fff
+  .search span
+    border-radius: 0px
+    margin-right: 0px
+  .header-user
+    position: absolute
+    top: 5px
+    right: 0
+.icon-square
+  square()
+
+#board-canvas
+  overflow-x: auto;
+.list-wrapper
+  width: 270px;
+  margin: 0 5px;
+  height: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+.add
+  height: auto;
+  min-height: 30px;
+  padding: 5px;
+  border-radius: 3px;
+  background: colors.list;
+form
+  display: block;
+  input[type='text']
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid #aaa;
+    box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+    display: block;
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: inherit;
+  .add-list-bar
+    add_bar()
+  .add-options
+    margin-top: 10px
+    display: block
+    input
+      button()
+    span
+      background: colors.list;
+      color: #999;
+      font-size: 22px;
+      font-weight: 400;
+      &:hover
+        background: inherit;
+        color: colors.text;
+.add-list
+  input[type='text'], .add-options
+    display: none;
+
+/* List View styles */
+
+.placeholder-list
+  background: colors.secondary
+.list
+  background: colors.list;
+  border-radius: 3px;
+  box-sizing: border-box;
+  max-height: 100%;
+  position: relative;
+  textarea, .edit-title
+    border: none;
+    border-radius: 3px;
+    box-shadow: none;
+    font-size: inherit;
+    padding: 3px 5px;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    &:focus
+      outline: none;
+  .edit-title
+    background: colors.list;
+    font-weight: 700;
+    height: 18px;
+    cursor: pointer;
+    &:focus
+      background: #fff;
+  textarea.card-input
+    height: 70px;
+    background: #fff;
+    resize: vertical;
+    padding-top: 5px;
+    margin-right: 0;
+  .list-header
+    padding: 8px 100px 8px 10px;
+    position: relative;
+    cursor: pointer;
+  .list-cards
+    flex: 1 1 auto;
+    margin: 0 4px;
+    padding: 0 4px;
+    z-index: 1;
+    overflow-y: auto;
+    min-height: 30px;
+  .icon-sm
+    square()
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    color: #b7b7b7;
+  .delete
+    position: absolute;
+    top: 4px;
+    right: 0;
+    background: inherit;
+    &:hover
+      color: colors.text;
+      background: #c9c9c9;
+  .create-card
+    padding-bottom: 6px;
+    height: auto;
+    min-height: 30px;
+    display: none;
+  .add-card
+    add_bar()
+    background: inherit;
+    color: #b7b7b7;
+    &:hover
+      color: colors.text;
+      text-decoration: underline;
+      background: #c9c9c9;
+
+/* Card View Styles */
+
+.placeholder-card
+  background: #bcbfc4;
+.list-card
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 6px;
+  max-width: 300px;
+  min-height: 20px;
+  position: relative;
+  due_date_bg()
+.list-card-details
+  overflow: hidden;
+  padding: 6px 6px 2px 8px;
+  position: relative;
+.list-card-labels
+  margin: 2px 0;
+  overflow: auto;
+  position: relative;
+.card-label
+  float: left;
+  height: 8px;
+  margin: 0 3px 3px 0;
+  padding: 0;
+  width: 42px;
+  border-radius: 3px;
+.list-card-title
+  clear: both;
+  margin: 0 0 4px 0;
+  overflow: hidden;
+  word-wrap: break-word;
+.open-quick-edit
+  square()
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  color: #b7b7b7;
+  background: inherit;
+  position: absolute;
+  margin-right: 0;
+  right: 2px;
+  top: 2px;
+  font-size: 12px;
+  z-index: 2;
+  display: none;
+  &:hover
+    color: colors.text;
+    background: #c9c9c9;
+.badges
+  padding-bottom: 2px;
+  max-width: 100%;
+  font-size: 12px;
+  color: #77797c;
+  div
+    margin: 0 4px 4px 0;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    padding: 0 4px;
+  .date
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 3px;
+
+/* Move Card, Copy Card View styles */
+
+.move-view, .copy-view
+  mini_view()
+  a
+    close_anchor()
+  .selects
+    margin-bottom: 25px;
+    .select
+      position: relative;
+      display: inline-block;
+      &:hover
+        background: #409ec9;
+        color: #fff;
+      select
+        select()
+        &:hover
+          background: #409ec9;
+          color: #fff;
+      .select-label
+        position: absolute;
+        font-size: 12px;
+        font-weight: 700;
+        left: 10px;
+        top: 5px;
+        pointer-events: none;
+    .first
+      width: 70%;
+      margin-right: 5%;
+    .second
+      width: 25%;
+  input[type='submit']
+    button()
+
+.copy-view
+  h4, label
+    color: colors.text;
+  h4
+    margin: 10px 0;
+  textarea
+    overflow: hidden;
+    word-wrap: break-word;
+    resize: vertical;
+    min-height: 70px;
+    display: block;
+    margin: 0;
+    background: colors.list;
+    width: 100%;
+    font-size: inherit;
+    line-height: 18px;
+    padding: 7px;
+    box-sizing: border-box;
+    border: 1px solid #cecece;
+    &:focus
+      background: #fff;
+
+/* Board header */
+
+.board-header
+  padding: 0 0 10px 0;
+  .board-header-btns
+    display: inline-block;
+  a
+    height: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+    margin-right: 3px;
+    text-decoration: none;
+    &:hover
+      background: colors.secondary;
+  .board-name
+    font-size: 18px;
+    font-weight: 700;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    vertical-align: middle;
+  .board-header-star, .board-header-privacy
+    font-size: 12px;
+  .starred
+    color: #f4b642;
+    background: colors.secondary;
+
+/* Rename Board view */
+
+.rename-board
+  mini_view()
+  position: absolute;
+  top: 90px;
+  left: 10px;
+  z-index: 3;
+  a
+    close_anchor()
+  h4
+    color: colors.text
+    margin: 10px 0
+  input[type='text']
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: inherit;
+    display: block;
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    border: 1px solid #cecece;
+    background: colors.list;
+    &:focus
+      background: #fff;
+      border-color: #000;
+  input[type='submit']
+    button()
+
+/* Quick Edit view */
+.overlay
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.6);
+.quick-edit
+  form
+    z-index: 5;
+    background-color: transparent;
+    width: 255px;
+    textarea
+      overflow: hidden;
+      word-wrap: break-word;
+      resize: none;
+      background: #fff;
+      height: 100px;
+      width: 100%;
+      margin: 0 0 20px 0;
+      padding: 10px;
+      box-sizing: border-box;
+      font-size: inherit;
+      line-height: 18px;
+      display: block;
+      border: none;
+    input[type='submit']
+      button()
+
+/* Search Results */
+
+.search-results
+  h1
+    font-size: 18px;
+    font-weight: 700;
+    margin: 5px 0 0 0;
+  .results
+    width: 350px;
+    padding: 15px;
+    overflow-y: auto;
+    background: colors.list;
+    color: colors.text;
+    z-index: 5;
+    position: absolute;
+    top: 40px;
+    left: 100px;
+    li
+      margin: 15px 0;
+      a, p, span
+        font-size: inherit;
+      a, span
+        font-weight: 700;
+      p, span
+        color: #b7b7b7;
+      a
+        text-decoration: none;
+        color: colors.text;
+        &:hover
+          text-decoration: underline;
+      span
+        font-weight: 700;
+      span.fa-lock
+        font-weight: 400;
+        color: #f23f1f;
+      p.no-match
+        text-align: center;
+  .overlay-transparent
+    position: fixed;
+    top: 40px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 4;
+    background-color: transparent;
+
+/* Card modal styles */
+
+.card_modal
+  background: colors.list;
+  position: absolute;
+  padding: 20px;
+  width: 700px;
+  z-index: 5;
+  top: 50px;
+  left: 50%;
+  margin-left: -350px;
+
+  p, a, .fa
+    color: #a0a0a0;
+
+  h2, h3
+    color: colors.text;
+  h2
+    font-size: 16px;
+    margin: 10px 0;
+  h3
+    font-size: 14px;
+
+  .card-modal-icon
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #a0a0a0;
+
+  textarea
+    overflow: hidden;
+    word-wrap: break-word;
+    resize: none;
+    height: 90px;
+    display: block;
+    margin: 0 8px 4px 0;
+    background: rgba(0, 0, 0, 0.03);
+    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border: 1px solid #cdd2d4;
+    padding: 7px;
+    font-size: 14px;
+    line-height: 18px;
+    box-sizing: border-box;
+
+  .close
+    modal_close_anchor()
+    &:hover
+      color: #4d4d4d;
+  .close-modal
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+  .main-content
+    margin-right: 150px;
+    > div
+      padding-left: 30px;
+
+  .card-modal-header, .add-comment, .activity, .comment-details
+    position: relative;
+
+  .add-comment, .activity, .comment-details, .labels-due-date, .description-edit
+    margin-top: 30px;
+
+  .card-modal-header
+    > p
+      margin: 5px 0;
+    > input
+      font-weight: 700;
+      font-size: 18px;
+      background: colors.list;
+      height: 24px;
+      width: 100%;
+      color: colors.text;
+      box-sizing: border-box;
+      outline: none;
+      border: none;
+      &:focus
+        background: #fff;
+
+  .labels, .due-date
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+    due_date_bg()
+    p
+      margin-bottom: 10px;
+  .labels span
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 4px 4px 0;
+    width: auto;
+    min-width: 40px;
+    padding: 0 10px;
+    background: green;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    vertical-align: top;
+  .labels span.add-new-label
+    width: 30px;
+    color: #a0a0a0;
+    background: #d8d8d8;
+    font-weight: 400;
+    font-size: 18px;
+    min-width: 30px;
+    &:hover
+      color: colors.text;
+      background: #d1d1d1;
+  .due-date > span
+    display: inline-block;
+    padding: 5px;
+    height: 30px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin: 0 4px 4px 0;
+  .due-date .complete, .complete-date
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+  .due-date .complete
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    &:hover > span
+      display: inline-block;
+  .due-date .complete-date
+    color: #fff;
+    text-decoration: underline;
+  .due-date .fa-check
+    position: absolute;
+    font-size: 12px;
+    top: 6px;
+    left: 3px;
+    padding: 0;
+    margin: 0;
+    display: none;
+    color: #fff;
+
+  .description-edit .edit-desc-link
+    padding: 7px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover
+      background: #d1d1d1;
+  .desc-title
+    display: inline-block;
+    margin-right: 10px;
+  .desc-text
+    margin: 10px 0;
+    color: colors.text;
+  .description-edit-form
+    display: none;
+
+  .add-comment
+    > span
+      top: 30px;
+    .fa-comment-o
+      top: 0px;
+    textarea
+      background: #fff;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    .disabled
+      color: #a0a0a0;
+      background: #d8d8d8;
+      border: none;
+      box-shadow: none;
+      font-weight: 400;
+      height: 40px;
+
+  .comment-details
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cecece;
+    + .comment-details
+      margin-top: 10px;
+    &:last-child
+      border-bottom: none;
+
+    p
+      padding: 7px;
+      box-sizing: border-box;
+      border-radius: 3px;
+      background: #fff;
+      box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      margin: 10px 0;
+      color: colors.text;
+    .comment-actions
+      a, span
+        font-size: 12px;
+        color: #a0a0a0;
+    textarea
+        background: #fff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        margin-top: 10px;
+    form
+      display: none;
+
+  .sidebar
+    position: absolute;
+    right: 10px;
+    top: 50px;
+    width: 140px;
+    h2.actions
+      margin-top: 25px;
+    h3
+      display: inline-block;
+    a
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      background: #fff;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+      .fa-check-square
+        font-size: 20px;
+        color: #3be23b;
+        vertical-align: middle;
+      &:hover
+        background: #409ec9;
+      &:hover > span,
+      &:hover > h3
+        color: #fff;
+
+/* Date picker view */
+.change-date
+  mini_view()
+  width: 350px;
+  a.close-date-picker
+    close_anchor()
+  .ui-datepicker
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    a
+      text-decoration: none;
+    table
+      width: 100%;
+      box-sizing: border-box;
+      border-collapse: collapse;
+      th
+        color: colors.text;
+        background: linear-gradient(to bottom, #fff 0, #f9f9f9 100%);
+  td
+    padding: 0px;
+    width: 35px;
+    border: 1px solid #b7b7b7;
+    a
+      display: block;
+      color: colors.text;
+      text-align: center;
+      height: 30px;
+      line-height: 30px;
+      width: 100%;
+      border-radius: 0px;
+  .ui-datepicker-unselectable
+    background: colors.list;
+    color: colors.list;
+  .ui-datepicker-header
+    margin: 10px 0;
+    a
+      text-decoration: underline;
+      padding: 10px;
+      &:hover
+        background: colors.list;
+        color: colors.text;
+        cursor: pointer;
+  .ui-datepicker-prev
+    float: left;
+  .ui-datepicker-next
+    float: right;
+  .ui-datepicker-title
+    text-align: center;
+    padding-top: 5px;
+  .ui-state-hover
+    background: colors.list;
+  .ui-state-active
+    background: #409ec9;
+    color: #fff;
+  .date-time
+    display: inline-block
+    width: 45%;
+    margin: 0 15px 10px 0;
+    h3
+      font-weight: 700;
+      color: colors.text;
+      font-size: inherit;
+      margin-bottom: 10px;
+    input
+      height: 30px;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: inherit;
+      background: #fff;
+      box-shadow: none;
+      &[name='due_time']
+        background: colors.list;
+  input[type='submit']
+    button()
+  .remove-date
+    remove_link()
+
+/* Labels view styles */
+
+.labels-view
+  mini_view()
+  a
+    cursor: pointer;
+  a.close
+    close_anchor()
+  span.label, span.fa-pencil
+    display: inline-block;
+    vertical-align: middle;
+  span.label
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 0 4px;
+    min-height: 18px;
+    padding: 8px;
+    position: relative;
+    color: #fff;
+    font-weight: 700;
+    width: 75%;
+    &:hover
+      box-shadow: -8px 0 #959da1;
+  span.fa-check
+    position: absolute;
+    color: #fff;
+    font-weight: 400;
+    top: 10px;
+    right: 8px;
+    display: none;
+  span.fa-pencil
+    height: 18px;
+    width: 18px;
+    line-height: 18px;
+    text-align: center;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #b7b7b7;
+    border-radius: 3px;
+    padding: 8px;
+    &:hover
+      color: colors.text;
+      background: #b7b7b7;
+  a.new-label
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px;
+    color: #a0a0a0;
+    box-sizing: border-box;
+    width: 100%;
+    text-decoration: underline;
+    &:hover
+      color: #4d4d4d;
+      background: #b7b7b7;
+
+/* Create Label view */
+
+.create-label-view
+  create_change_label()
+
+/* Change Label View */
+
+.change-label-view
+  create_change_label()
+  .remove-label
+    remove_link()
+    transform: none;
+    position: static;
+
+/* Notifications view */
+
+.notifications-view
+  background: colors.list;
+  width: 400px;
+  height: auto;
+  overflow-y: auto;
+  padding: 20px;
+  position: absolute;
+  top: 40px;
+  right: 8px;
+  a.close
+    close_anchor()
+  .title, p.none, .datetime, .reset
+    color: #a0a0a0;
+  .title, p.none
+    text-align: center;
+  a.title-link
+    color: colors.text;
+  li
+    position: relative;
+    padding: 15px 0 15px 30px;
+    + li
+      border-top: #cecece;
+  span
+    color: colors.text;
+  .user
+    font-weight: 700;
+  .datetime, .reset
+    display: inline-block;
+    font-size: 12px;
+  .reset
+    font-size: 12px;
+    text-decoration: underline;
+    padding: 10px;
+    &:hover
+      background: #cecece;
+      color: colors.text;
+  .fa-user
+    position: absolute;
+    top: 16px;
+    left: 10px;
+    font-size: 14px;
+  p.none
+    padding: 30px 50px;
+    box-sizing: border-box;
+    background: #cecece;
+    border: 1px dotted #a0a0a0;

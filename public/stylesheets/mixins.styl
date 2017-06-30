@@ -1,0 +1,194 @@
+colors = {
+  text: #4d4d4d,
+  main: rgb(0, 121, 191),
+  secondary: #026aa7,
+  list: #e2e4e6
+}
+
+square()
+  display: inline-block
+  width: 30px
+  height: 30px
+  line-height: 30px
+  text-align: center
+  color: #fff
+  font-size: 16px
+  border-radius: 3px
+  margin-right: 8px
+  vertical-align: top
+  cursor: pointer
+  background: rgba(255, 255, 255, 0.3)
+  transition: background ease 85ms
+  &:hover
+    background: rgba(255, 255, 255, 0.4)
+
+rectangle_label()
+  margin-right: 8px
+  color: #f3f3f3
+  display: inline-block
+  height: 30px
+  border-radius: 3px
+  text-decoration: none
+  cursor: pointer
+  background: rgba(255, 255, 255, 0.3)
+  transition: background ease-in 85ms, color ease 85ms
+  &:hover
+    background: rgba(255, 255, 255, 0.4)
+    color: #fff
+
+search_bar()
+  float: left
+  border-radius: 3px
+  height: 30px
+  overflow: hidden
+  transition: background ease 85ms
+  &:hover
+    background: rgba(255, 255, 255, 0.1)
+
+button()
+  height: 30px
+  font-weight: 700
+  font-size: inherit
+  border: none
+  padding: 15px 25px
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%)
+  box-shadow: 0 1px 0 #3f6f21
+  border-radius: 3px
+  color: #fff
+  line-height: 0
+  cursor: pointer
+  &:focus,
+  &:active
+    outline: none;
+
+add_bar()
+  display: block
+  background: colors.secondary
+  width: 100%
+  height: 40px
+  box-sizing: border-box
+  border-radius: 3px
+  padding: 12px
+  font-size: inherit
+  cursor: pointer
+  color: rgba(255, 255, 255, 0.6)
+  &:hover
+    background: #1a4f93;
+
+mini_view()
+  background: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  height: auto;
+  width: 350px;
+  color: #999;
+  position: absolute;
+  z-index: 6;
+  p
+    text-align: center;
+
+close_anchor()
+  position: absolute;
+  transform: rotate(45deg);
+  top: 2px;
+  right: 10px;
+  text-decoration: none;
+  color: #999;
+  font-size: 24px;
+
+modal_close_anchor()
+  display: inline-block;
+  transform: rotate(45deg);
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 38px;
+  margin-left: 10px;
+  vertical-align: middle;
+  padding: 0;
+  cursor: pointer;
+  color: #a0a0a0;
+
+appearance()
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+select()
+  outline: none;
+  appearance()
+  display: block;
+  width: 100%;
+  padding: 20px 10px 10px 10px;
+  margin: 0;
+  border: 1px solid #e2e4e6;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #fff 0, #f9f9f9 100%);
+  color: #4d4d4d;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+
+due_date_bg()
+  .green
+    background: green;
+  .pink
+    background: #e2a195;
+  .yellow
+    background: #e0c023;
+
+create_change_label()
+  mini_view()
+  a, span.fa-arrow-left
+    cursor: pointer;
+  a
+    close_anchor()
+  span.fa-arrow-left
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #999;
+  h4
+    color: colors.text;
+    margin: 10px 0;
+  input[type='submit']
+    button()
+  input[type='text']
+    height: 40px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: inherit;
+    background: colors.list;
+    box-shadow: none;
+    &:focus
+      background: #fff;
+  span.label
+    position: relative;
+    height: 38px;
+    margin: 0 10px 10px 0;
+    width: 42px;
+    display: inline-block;
+    border-radius: 3px;
+    cursor: pointer;
+    vertical-align: top;
+    padding: 3px 6px;
+    &:hover
+      opacity: 0.8;
+  span.fa-check
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-weight: 400;
+    color: #fff;
+    display: none;
+
+remove_link()
+  button()
+  float: right;
+  background: colors.list;
+  color: #b5321e;
+  text-decoration: none;
+  height: 0px;
+  &:hover
+    color: #fff;
+    background: linear-gradient(to bottom, #c94626 0, #bc4021 100%);

@@ -1,0 +1,28 @@
+<div class="board-header">
+  <a class="board-name" href="#"><span>{{title}}</span></a>
+  <div class="board-header-btns">
+    {{#if starred}}
+      <a class="board-header-star starred" href="#">
+        <span class="fa fa-star-o starred"></span>
+      </a>
+    {{else}}
+      <a class="board-header-star" href="#">
+        <span class="fa fa-star-o"></span>
+      </a>
+    {{/if}}
+    <a class="board-header-privacy" href="#">
+      <span class="fa fa-lock"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+      <span class="privacy">Private</span>
+    </a>
+  </div>
+</div>
+<div class="list-wrapper add-list">
+  <form action="/lists/new" method="post">
+    <span class="add-list-bar">Add a list...</span>
+    <input type="text" name="title" placeholder="Add a list..." maxlength="512"/>
+    <div class="add-options">
+      <input class="board-add" type="submit" value="Save"/>
+      <span class="fa fa-times icon-square close-add-list"></span>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,19 @@
+<p>Labels</p>
+<hr>
+<a class="close">+</a>
+<ul>
+  {{#each labels}}
+    <li>
+      <span class="label" style="background:{{color}}" data-id="{{id}}" data-title="{{title}}" data-color="{{color}}">
+        {{title}}
+        <span class="fa fa-check" style=
+        {{#hasLabel ../label_ids id}}
+          "display:block"
+        {{/hasLabel}}
+        ></span>
+      </span>
+      <span class="fa fa-pencil"></span>
+    </li>
+  {{/each}}
+</ul>
+<a class="new-label">Create a new label</a>

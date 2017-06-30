@@ -1,0 +1,19 @@
+<div class="list" data-list-id="{{id}}">
+  <div class="list-header">
+    <input type="text" class="edit-title" name="title" value="{{title}}" />
+    <span class="fa fa-trash-o icon-sm delete"></span>
+  </div>
+  <div class="list-cards" data-list-id="{{id}}">
+    <div class="create-card">
+      <form action="/lists/{{id}}/cards/new" method="post">
+        <!-- <input type="hidden" name="list_id" value="{{id}}"/> -->
+        <textarea name="title" class="card-input"></textarea>
+        <div class="add-options">
+          <input type="submit" value="Add"/>
+          <span class="fa fa-times icon-square close"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+  <span class="add-card">Add a card...</span>
+</div>
