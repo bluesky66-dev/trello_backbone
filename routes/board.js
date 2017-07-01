@@ -229,7 +229,8 @@ module.exports = function(router) {
     var list = Board.findByID(board.lists, list_id);
     var card = Board.findByID(list.cards, card_id);
     var comments = card.comments;
-    comment.id = comments[comments.length - 1].id + 1;
+
+    comment.id = comments.length ? comments[comments.length - 1].id + 1 : 1;
 
     Board.addDateTime(comment);
     comments.push(comment);
